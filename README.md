@@ -4,6 +4,48 @@ This repository contains the written test documentation and the Java
 Selenium/TestNG automation project for Scenario Option B: testing the
 shopping cart functionality of an online store using the Periplus web version as the system under test.
 
+## Requirements and Setup
+
+Install these tools before running the automated test:
+
+- Java JDK 17 or newer
+- Apache Maven 3.9 or newer
+- Google Chrome
+
+Check Java and Maven with:
+
+```MINGW64
+java -version
+mvn -version
+```
+
+Maven downloads the Java dependencies from `pom.xml`, including Selenium and
+TestNG. ChromeDriver does not need to be installed manually because Selenium
+Manager resolves it automatically.
+
+The test requires internet access and valid Periplus test account credentials.
+Set credentials through environment variables. Do not commit passwords.
+
+Git Bash / MINGW64:
+
+```MINGW64
+PERIPLUS_EMAIL="your-email@example.com" PERIPLUS_PASSWORD='your-password' mvn test
+```
+
+PowerShell:
+
+```powershell
+$env:PERIPLUS_EMAIL="your-email@example.com"
+$env:PERIPLUS_PASSWORD="your-password"
+mvn test
+```
+
+Optional visible Chrome run:
+
+```MINGW64
+mvn test -Dperiplus.searchTerm=ikigai -Dheadless=false
+```
+
 ## 1. Test Case Components
 
 A test case is a structured set of conditions, data, actions, and expected results used to verify a specific test condition. 
@@ -280,18 +322,8 @@ The automation covers the required flow:
 5. Add one product to the cart.
 6. Verify that the product has been successfully added to the cart.
 
-The automated test uses environment variables for credentials so that the
-password is not committed to Git:
-
-```MINGW64
-PERIPLUS_EMAIL="your-email@example.com" PERIPLUS_PASSWORD="your-password" mvn test
-```
-
-Optional runtime settings:
-
-```MINGW64
-mvn test -Dperiplus.searchTerm=ikigai -Dheadless=false
-```
+Run instructions and credential setup are described in the Requirements and
+Setup section above.
 
 ## 4. Automation Design Notes
 
