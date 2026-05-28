@@ -12,7 +12,6 @@ public class ProductDetailPage extends BasePage {
     private final By addToCartButton = By.cssSelector("button.btn-add-to-cart");
     private final By quantityInput = By.cssSelector("input[id^='qty_']");
     private final By cartCount = By.id("cart_total");
-    private final By cartLink = By.cssSelector("#show-your-cart a[href*='checkout/cart'], a[href*='checkout/cart']");
     private final By notificationAreas = By.cssSelector("#notification-modal-header, #notification, .success");
 
     public ProductDetailPage(WebDriver driver) {
@@ -53,7 +52,7 @@ public class ProductDetailPage extends BasePage {
     }
 
     public CartPage openCart() {
-        clickable(cartLink).click();
+        driver.get(baseUrl + "/checkout/cart");
         return new CartPage(driver).waitForLoaded();
     }
 
